@@ -5,13 +5,29 @@ pygame.init()
 # Set window resolution
 display_width = 800
 display_height = 600
-game_display = pygame.display.set_mode((display_width, display_height))
-
-# Set window title
-pygame.display.set_caption('Space')
 
 # Set window "FPS"
 clock = pygame.time.Clock()
+
+
+def create_display(height=600, width=800, title=True):
+    """
+    Create a PyGame display.
+
+    :param height: Vertical resolution in pixels
+    :param width: Horizontal resolution in pixels
+    :param title: Window title
+    :return: A PyGame display object
+    """
+    display = pygame.display.set_mode((width, height))
+    try:
+        pygame.display.set_caption(title)
+    except TypeError:
+        pass
+    return display
+
+
+game_display = create_display()
 
 
 def game_loop():
