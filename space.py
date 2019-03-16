@@ -1,11 +1,5 @@
 import pygame
 
-pygame.init()
-
-# Set window resolution
-display_width = 800
-display_height = 600
-
 
 def create_display(height=600, width=800, title=True):
     """
@@ -24,9 +18,6 @@ def create_display(height=600, width=800, title=True):
     return display
 
 
-game_display = create_display()
-
-
 def game_loop():
     game_exit = False
 
@@ -36,5 +27,17 @@ def game_loop():
                 game_exit = True
 
 
-game_loop()
-pygame.quit()
+def main():
+    """Run the program."""
+    # Set window resolution
+    display_width = 800
+    display_height = 600
+
+    pygame.init()
+    create_display(display_height, display_width, 'Space')
+    game_loop()
+    pygame.quit()
+
+
+if __name__ == '__main__':
+    main()
