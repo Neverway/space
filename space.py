@@ -6,9 +6,6 @@ pygame.init()
 display_width = 800
 display_height = 600
 
-# Set window "FPS"
-clock = pygame.time.Clock()
-
 
 def create_display(height=600, width=800, title=True):
     """
@@ -37,8 +34,6 @@ def game_loop():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 game_exit = True
-
-    clock.tick(30)
 
 
 game_loop()
