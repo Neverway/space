@@ -2,12 +2,15 @@ import pygame
 
 pygame.init()
 
+# Set window resolution
 display_width = 800
 display_height = 600
 game_display = pygame.display.set_mode((display_width, display_height))
 
+# Set window title
 pygame.display.set_caption('Space')
 
+# Set window "FPS"
 clock = pygame.time.Clock()
 
 
