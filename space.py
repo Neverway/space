@@ -1,4 +1,10 @@
+import logging
+
 import pygame
+
+
+log = logging.getLogger(__name__)
+log.addHandler(logging.NullHandler())
 
 
 def create_display(height=600, width=800, title=True):
@@ -23,6 +29,7 @@ def game_loop():
 
     while not game_exit:
         for event in pygame.event.get():
+            log.debug(event)
             if event.type == pygame.QUIT:
                 game_exit = True
 
@@ -40,4 +47,5 @@ def main():
 
 
 if __name__ == '__main__':
+    logging.basicConfig(level=logging.DEBUG)
     main()
