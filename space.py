@@ -1,4 +1,10 @@
+import logging
+
 import pygame
+
+
+log = logging.getLogger(__name__)
+log.addHandler(logging.NullHandler())
 
 
 def create_display(height=600, width=800, title=True):
@@ -40,4 +46,5 @@ def main():
 
 
 if __name__ == '__main__':
+    logging.basicConfig(level=logging.DEBUG)
     main()
