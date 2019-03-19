@@ -7,6 +7,14 @@ log = logging.getLogger(__name__)
 log.addHandler(logging.NullHandler())
 
 
+class Mob(pygame.sprite.Sprite):
+    def __init__(self):
+        super().__init__()
+        self.surf = pygame.Surface((75, 25))
+        self.surf.fill((1, 255, 1))
+        self.rect = self.surf.get_rect()
+
+
 def create_display(height=600, width=800, title=True):
     """
     Create a PyGame display.
@@ -20,12 +28,13 @@ def create_display(height=600, width=800, title=True):
     try:
         pygame.display.set_caption(title)
     except TypeError:
-        pass
+        log.debug("Using default tittle")
     return display
 
 
-def game_loop():
+def game_loop(display):
     game_exit = False
+    mob = Mob()
 
     while not game_exit:
         for event in pygame.event.get():
@@ -33,6 +42,8 @@ def game_loop():
             if event.type == pygame.QUIT:
                 game_exit = True
 
+        display.blit(mob.surf, (400, 300))
+        pygame.display.flip()
 
 def main():
     """Run the program."""
@@ -41,8 +52,8 @@ def main():
     display_height = 600
 
     pygame.init()
-    create_display(display_height, display_width, 'Space')
-    game_loop()
+    display = create_display(display_height, display_width, 'Space')
+    game_loop(display)
     pygame.quit()
 
 
