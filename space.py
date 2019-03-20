@@ -68,7 +68,6 @@ def main():
     pygame.init()
     display = create_display(display_height, display_width, 'Space')
     game_loop(display)
-    pygame.display.flip()
     pygame.quit()
 
 
