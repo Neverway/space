@@ -6,6 +6,7 @@ from pygame.locals import *
 
 log = logging.getLogger(__name__)
 log.addHandler(logging.NullHandler())
+clock = pygame.time.Clock()
 
 
 class Mob(pygame.sprite.Sprite):
@@ -55,8 +56,9 @@ def game_loop(display):
             pressed_keys = pygame.key.get_pressed()
 
         mob.update(pressed_keys)
-        display.blit(mob.surf, (400, 300))
+        display.blit(mob.surf, mob.rect)
         pygame.display.flip()
+        clock.tick(30)
 
 
 def main():
@@ -69,6 +71,7 @@ def main():
     display = create_display(display_height, display_width, 'Space')
     game_loop(display)
     pygame.quit()
+
 
 
 if __name__ == '__main__':
