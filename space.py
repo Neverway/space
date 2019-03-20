@@ -46,13 +46,13 @@ def create_display(height=600, width=800, title=True):
 def game_loop(display):
     game_exit = False
     mob = Mob()
-    pressed_keys = pygame.key.get_pressed()
 
     while not game_exit:
         for event in pygame.event.get():
             log.debug(event)
             if event.type == pygame.QUIT:
                 game_exit = True
+            pressed_keys = pygame.key.get_pressed()
 
         mob.update(pressed_keys)
         display.blit(mob.surf, (400, 300))
