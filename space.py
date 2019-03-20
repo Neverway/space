@@ -1,6 +1,7 @@
 import logging
 
 import pygame
+from pygame.locals import *
 
 
 log = logging.getLogger(__name__)
@@ -13,6 +14,16 @@ class Mob(pygame.sprite.Sprite):
         self.surf = pygame.Surface((75, 25))
         self.surf.fill((1, 255, 1))
         self.rect = self.surf.get_rect()
+
+    def update(self, pressed_keys):
+        if pressed_keys[K_UP]:
+            self.rect.move_ip(0, -5)
+        if pressed_keys[K_DOWN]:
+            self.rect.move_ip(0, 5)
+        if pressed_keys[K_LEFT]:
+            self.rect.move_ip(-5, 0)
+        if pressed_keys[K_RIGHT]:
+            self.rect.move_ip(5, 0)
 
 
 def create_display(height=600, width=800, title=True):
@@ -28,13 +39,14 @@ def create_display(height=600, width=800, title=True):
     try:
         pygame.display.set_caption(title)
     except TypeError:
-        log.debug("Using default tittle")
+        log.debug("Using default title")
     return display
 
 
 def game_loop(display):
     game_exit = False
     mob = Mob()
+    pressed_keys = pygame.key.get_pressed()
 
     while not game_exit:
         for event in pygame.event.get():
@@ -42,8 +54,10 @@ def game_loop(display):
             if event.type == pygame.QUIT:
                 game_exit = True
 
+        mob.update(pressed_keys)
         display.blit(mob.surf, (400, 300))
         pygame.display.flip()
+
 
 def main():
     """Run the program."""
@@ -54,9 +68,10 @@ def main():
     pygame.init()
     display = create_display(display_height, display_width, 'Space')
     game_loop(display)
+    pygame.display.flip()
     pygame.quit()
 
 
 if __name__ == '__main__':
-    logging.basicConfig(level=logging.DEBUG)
+    logging.basicConfig(level=logging.INFO)
     main()
