@@ -16,6 +16,8 @@ class Mob(pygame.sprite.Sprite):
         self.surf.fill((1, 255, 1))
         self.rect = self.surf.get_rect()
 
+
+class Player(Mob):
     def update(self, pressed_keys):
         if pressed_keys[K_UP]:
             self.rect.move_ip(0, -5)
@@ -46,7 +48,7 @@ def create_display(height=600, width=800, title=True):
 
 def game_loop(display):
     game_exit = False
-    mob = Mob()
+    player = Player()
     background = pygame.Surface(display.get_size())
     background.fill((0, 0, 0))
     while not game_exit:
@@ -56,8 +58,8 @@ def game_loop(display):
                 game_exit = True
 
         pressed_keys = pygame.key.get_pressed()
-        mob.update(pressed_keys)
-        display.blit(mob.surf, mob.rect)
+        player.update(pressed_keys)
+        display.blit(player.surf, player.rect)
         pygame.display.flip()
         display.blit(background, (0, 0))
         clock.tick(30)
