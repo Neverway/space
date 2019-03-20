@@ -47,7 +47,8 @@ def create_display(height=600, width=800, title=True):
 def game_loop(display):
     game_exit = False
     mob = Mob()
-
+    background = pygame.Surface(display.get_size())
+    background.fill((0, 0, 0))
     while not game_exit:
         for event in pygame.event.get():
             log.debug(event)
@@ -58,6 +59,7 @@ def game_loop(display):
         mob.update(pressed_keys)
         display.blit(mob.surf, mob.rect)
         pygame.display.flip()
+        display.blit(background, (0, 0))
         clock.tick(30)
 
 
