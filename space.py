@@ -54,8 +54,8 @@ def game_loop(display):
             log.debug(event)
             if event.type == pygame.QUIT:
                 game_exit = True
-            pressed_keys = pygame.key.get_pressed()
 
+        pressed_keys = pygame.key.get_pressed()
         mob.update(pressed_keys)
         display.blit(mob.surf, mob.rect)
         pygame.display.flip()
